@@ -25,7 +25,16 @@ services:
         image: mysql:5.7
         ports:
             - "3306:3306"
-        # 环境变量
         environment:
-          # mysql密码
-          - MYSQL_ROOT_PASSWORD=password
+            # mysql密码
+            - MYSQL_ROOT_PASSWORD=password
+        volumes:
+            - mysql-data:/var/lib/mysql
+       
+    redis:
+        image: redis:latest
+        ports:
+        - "${REDIS_PORT}:6379"
+
+volumes:
+    mysql-data:
