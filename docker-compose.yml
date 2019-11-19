@@ -12,7 +12,7 @@ services:
         volumes:
         # 映射主机./conf.d目录到容器/etc/nginx/conf.d目录
           - "$PWD/conf.d:/etc/nginx/conf.d"
-          - "$PWD/html:/var/www/html"
+          - "${CODE_PATH}:/usr/share/nginx/html"
     php:
         build: ./php
         # image指定build Dockerfile生成镜像的名称
@@ -20,7 +20,7 @@ services:
         ports:
             - "9000:9000"
         volumes:
-          - "$PWD/html:/var/www/html"
+          - "${CODE_PATH}:/usr/share/nginx/html"
     mysql:
         image: mysql:5.7
         ports:
