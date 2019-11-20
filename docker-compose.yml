@@ -4,14 +4,14 @@ services:
         image: nginx:1.16.1
         # 端口映射
         ports:
-            - "80:80"
+            - "978:978"
         # 依赖关系 先跑php
         depends_on:
             - "php"
         # 数据卷
         volumes:
         # 映射主机./conf.d目录到容器/etc/nginx/conf.d目录
-            - "$PWD/conf.d:/etc/nginx/conf.d"
+            - "${CONF_D_PATH}:/etc/nginx/conf.d"
             - "${CODE_PATH}:/usr/share/nginx/html"
     php:
         build: ./php
